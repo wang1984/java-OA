@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process name="qingkuan" xmlns="http://jbpm.org/4.4/jpdl">
+   <start name="start1" g="172,24,48,48">
+      <transition name="to 提交申请" to="提交申请" g="-69,-22"/>
+   </start>
+   <end name="end1" g="200,383,48,48"/>
+   <task name="提交申请" g="191,94,92,52" assignee="#{application.applicant.loginName}">
+      <transition name="to 部门经理审批" to="部门经理审批" g="-93,-22"/>
+   </task>
+   <task name="部门经理审批" g="166,178,92,52" assignee="ls">
+      <transition name="to 总经理审批" to="总经理审批" g="-81,-22"/>
+      <transition name="to end1" to="end1" g="-50,-22"/>
+   </task>
+   <task name="总经理审批" g="361,296,92,52" assignee="ww">
+      <transition name="to end1" to="end1" g="-50,-22"/>
+   </task>
+</process>

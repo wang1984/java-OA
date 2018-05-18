@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.java.oa.domain">
+
+	<class name="Forum" table="forum">
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<property name="name" column="name"></property>
+		<property name="description" column="description"></property>
+		<property name="position" column="position_"></property>
+
+		<property name="topicCount" column="topicCount" ></property> <!--  主题数量 -->
+		<property name="articleCount" column="articleCount" ></property> <!-- 文章数量（主帖数 + 回帖数） -->
+
+
+		<!-- topics属性，表示我与Topic的一对多关系 -->
+		<set name="topics">
+			<key column="forumId"></key>
+			<one-to-many class="Topic" />
+		</set>
+
+
+		<!-- 
+		   一对一有两种实现方式
+		   基于主键  
+		   基于外键 = 外键约束  + 唯一性约束 
+		   原理是一样的 ——》外键唯一
+		   
+		   最新主题
+		 lastTopic属性，表示我与Topic的一对一关系            
+		   采用基于外键的一对一映射 。外键存储在本方中。
+		 
+		 特殊的多对一  加上  unique="true"
+		 -->
+		<many-to-one name="lastTopic" class="Topic" column="lastTopicId" unique="true"></many-to-one>
+
+
+	</class>
+
+</hibernate-mapping>

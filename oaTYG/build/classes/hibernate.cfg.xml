@@ -1,0 +1,38 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+<session-factory>
+
+  
+	<property name="hibernate.dialect">
+		org.hibernate.dialect.MySQL5InnoDBDialect
+	</property>
+
+	<!-- 其他配置信息 -->
+	<property name="show_sql">true</property>
+	<property name="hbm2ddl.auto">update</property>
+
+
+	<!-- 这些映射文件是JBPM的，不能删除！！！ -->
+	<mapping resource="jbpm.repository.hbm.xml" />
+	<mapping resource="jbpm.execution.hbm.xml" />
+	<mapping resource="jbpm.history.hbm.xml" />
+	<mapping resource="jbpm.task.hbm.xml" />
+	<mapping resource="jbpm.identity.hbm.xml" />
+
+
+	<!-- 声明映射文件 -->
+	<mapping resource="com/java/oa/domain/User.hbm.xml" />
+	<mapping resource="com/java/oa/domain/Role.hbm.xml" />
+	<mapping resource="com/java/oa/domain/Department.hbm.xml" />
+	<mapping resource="com/java/oa/domain/Privilege.hbm.xml" />
+	<mapping resource="com/java/oa/domain/Forum.hbm.xml" />
+	<mapping resource="com/java/oa/domain/Reply.hbm.xml" />
+	<mapping resource="com/java/oa/domain/Topic.hbm.xml" />
+	<mapping resource="com/java/oa/domain/Template.hbm.xml" /> 
+	<mapping resource="com/java/oa/domain/Application.hbm.xml" /> 
+	<mapping resource="com/java/oa/domain/ApproveInfo.hbm.xml" /> 
+</session-factory>
+</hibernate-configuration>
